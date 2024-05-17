@@ -1,0 +1,31 @@
+Carpeta App
+
+Las importantes son las carpetas de HTTP y la de modelos
+MODELS: En la carpeta de Models pues va a estar la representacion de nuestros datos
+HTPP: es el como se va autilizar la informacion ademas que tiene los controladores y los middlewares
+
+
+Carpeta de BootStrap
+No es lo mimso que el framework Brosttraap pero minimilizado
+
+Config
+Configuraciones basicas de la aplicacion
+
+Database
+COntiene la struturas de mis tablas de base de datos y se puede migrar arsos o factorizarlos y llenar la base de datos
+la carpeta sedders dentro de database 
+
+La carpeta public es la que corre mi proyecto la que es publica para todos
+
+Resources
+Esta el contenido que nuestro proyecto
+
+
+Routes
+Es a donde tengo las cosas y donde los llea
+
+
+STORAGE
+Se pueden guardar unas cuantas cosas de Vistas o frameworks
+
+tests
