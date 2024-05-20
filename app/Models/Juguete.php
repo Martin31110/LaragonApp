@@ -11,7 +11,7 @@ class Juguete extends Model
     protected $fillable = ['NombreJ', 'PrecioJ', 'GeneroJ','MaterialJ','ProvedorJ'];
 
 
-    public function categorias(){
-        return $this->belongsToMany(categorias::class);
+    public function Sucursal(){
+        return $this->belongsToMany(Sucursal::class);
     }
 }

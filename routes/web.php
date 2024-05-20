@@ -2,20 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JugueteController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\SucursalController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('juguete',JugueteController::class);
+Route::resource('juguete', JugueteController::class);
+Route::resource('sucursales', SucursalController::class);

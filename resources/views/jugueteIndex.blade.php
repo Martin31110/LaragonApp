@@ -33,12 +33,12 @@
                     <td>{{$juguete->PrecioJ}}</td>
                     <td>{{$juguete->GeneroJ}}</td>
                     <td>{{$juguete->MaterialJ}}</td>
-                    <td>{{$juguete->Precio}}</td>
-                    {{-- <td>
-                        @foreach ($juguete->categorias as $categoria)
-                            {{$categoria->categoria}} <br>
+                    <td>{{$juguete->PrecioJ}}</td>
+                    <td>
+                        @foreach ($juguete->sucursales as $sucursal)
+                            {{$sucursal->nombre_sucursal}} <br>
                         @endforeach
-                    </td> --}}
+                    </td>
                     <td><a href="/juguete/{{$juguete->id}}">IR</a></td>
                 </tr>
             @endforeach

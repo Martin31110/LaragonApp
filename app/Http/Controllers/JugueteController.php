@@ -18,52 +18,46 @@ class JugueteController extends Controller
 
     public function create()
     {
-        return view('juegueteCreate');
-
-        //$categorias = categorias::all();
-        //return view('juegueteCreate', compact('categorias'));
+        $sucursales = Sucursal::all();
+        return view('juegueteCreate', compact('sucursales'));
     }
 
 
     public function store(Request $request)
     {
+        dd($request);
+            $request->validate([
+            'NombreJ' => 'required|string',
+            'PrecioJ' => 'required|numeric',
+            'GeneroJ' => 'required|string',
+            'MaterialJ' => 'required|string',
+            'ProvedorJ' => 'required|string',
+            'categoroias' => 'required'
+        ]);
 
-        //     $request->validate([
-        //         'NombreJ' => 'required|string',
-        //         'PrecioJ' => 'required|numeric',
-        //         'GeneroJ' => 'required|string',
-        //         'MaterialJ' => 'required|string',
-        //         'ProvedorJ' => 'required|string',
-        //         'categoroias' => 'required'
-        // ]);
-
-        //     //Crear el producto
-        //     $juguete = new Juguete();
-        //     $juguete->NombreJ = $request->NombreJ;
-        //     $juguete->PrecioJ = $request->PrecioJ;
-        //     $juguete->GeneroJ = $request->GeneroJ;
-        //     $juguete->MaterialJ = $request->MaterialJ;
-        //     $juguete->ProvedorJ = $request->ProvedorJ;
-        //     $juguete->save();
+            //Crear el producto
+            $juguete = new Juguete();
+            $juguete->NombreJ = $request->NombreJ;
+            $juguete->PrecioJ = $request->PrecioJ;
+            $juguete->GeneroJ = $request->GeneroJ;
+            $juguete->MaterialJ = $request->MaterialJ;
+            $juguete->ProvedorJ = $request->ProvedorJ;
+            $juguete->save();
             
 
-        //     //Asociar las categorias sleccionadas al juguete
+        //Asociar las   Sucursales sleccionadas al juguete
 
-        //     $juguete->categorias()->attach($request->categorias);
+            $juguete->categorias()->attach($request->sucursales);
 
-        //     Session()->flash('success', 'Se ha guardado con extio');
-        //     return redirect('/juguete');
-
-        Juguete::create($request->all());
-        return redirect('/juguete');
+            Session()->flash('success', 'Se ha guardado con extio');
+            return redirect('/juguete');
     }
 
 
     public function show(Juguete $juguete)
     {
-        // $juguete = Juguete::findOrFail($id);
-        // return view('/jugueteShow',compact('juguete'));
-        return view('/jugueteShow', compact('juguete'));
+        $juguete = Juguete::findOrFail($id);
+        return view('/jugueteShow',compact('juguete'));
     }
 
     /**
@@ -71,9 +65,9 @@ class JugueteController extends Controller
      */
     public function edit(Juguete $juguete)
     {
-        // $juguete = Juguete::findOrFail($id);
-        // return view('/jugueteEdit',compact('juguete'));
-        return view('jugueteEdit', compact('juguete'));
+
+        $sucursales = Sucursal::all();
+        return view('jugueteEdit', compact('sucursales', 'juguete'))
     }
 
     /**
@@ -82,21 +76,31 @@ class JugueteController extends Controller
     public function update(Request $request, Juguete $juguete)
     {
         Juguete::where('id', $juguete->id)->update($request->except('_token','_method', 'action'));
+        Session()->flash('success', 'Se ah modificado con exito');
         return redirect('/juguete');
 
-        // $juguete->NombreJ = $request->NombreJ;
-        // $juguete->PrecioJ = $request->PrecioJ;
-        // $juguete->GeneroJ = $request->GeneroJ;
-        // $juguete->MaterialJ = $request->MaterialJ;
-        // $juguete->ProvedorJ = $request->ProvedorJ;
-        // $juguete->save();
+            $request->validate([
+            'NombreJ' => 'required|string',
+            'PrecioJ' => 'required|numeric',
+            'GeneroJ' => 'required|string',
+            'MaterialJ' => 'required|string',
+            'ProvedorJ' => 'required|string',
+            'categoroias' => 'required'
+        ]);
+
+        $juguete->NombreJ = $request->NombreJ;
+        $juguete->PrecioJ = $request->PrecioJ;
+        $juguete->GeneroJ = $request->GeneroJ;
+        $juguete->MaterialJ = $request->MaterialJ;
+        $juguete->ProvedorJ = $request->ProvedorJ;
+        $juguete->save();
 
 
-        // if ($request->has('categorias')) {
-        //     $juguete->categorias()->sync($request->categorias);
-        // } else {
-        //     $juguete->categorias()->detach(); 
-        // }
+        if ($request->has('categorias')) {
+            $juguete->categorias()->sync($request->categorias);
+        } else {
+            $juguete->categorias()->detach(); 
+        }
     }
 
     /**
@@ -105,7 +109,7 @@ class JugueteController extends Controller
     public function destroy(Juguete $juguete)
     {
         $juguete->delete();
-        //Session()->flash('success', 'Se ah eliminado con exito');
+        Session()->flash('success', 'Se ah eliminado con exito');
         return redirect('/juguete');
     }
 }

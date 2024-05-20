@@ -31,15 +31,15 @@
             <label for="nombre">Provedor del Juguete:</label>
             <input type="text" name="ProvedorJ" id="ProvedorJ">
         </div>
-        {{-- <div class="input-field">
+        <div class="input-field">
             <select name="categorias[]" id="categorias" multiple>
-                <option value="" disabled selected>Selecciona una categorias</option>
-                @foreach ($categorias as $categoria)
-                    <option value="{{ $categoria->id }}">{{ $categoria->categoria }} </option> }}></option>
+                <option value="" disabled selected>Selecciona una sucursal</option>
+                @foreach ($sucursales as $sucursal)
+                    <option value="{{ $sucursal->id }}">{{ $sucursal->nombre_sucursal }} </option> }}></option>
                 @endforeach
             </select>
             <label for="categorias">Categorias</label>
-        </div> --}}
+        </div>
 
         <div class="center-align">
             <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Enviar</button>

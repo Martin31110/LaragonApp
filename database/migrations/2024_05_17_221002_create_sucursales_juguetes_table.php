@@ -11,25 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categoria_juguete', function (Blueprint $table) {
+        Schema::create('sucursales_juguetes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('juguete_id');
-            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('sucursal_id');
             $table->timestamps();
-
-
-
+        
+        
+        
             $table->foreign('juguete_id')->references('id')->on('juguetes')->onDelete('cascade');
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
-
+            $table->foreign('sucursal_id')->references('id')->on('sucursales')->onDelete('cascade');
+        
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('categoria_juguete');
+        Schema::dropIfExists('sucursales_juguetes');
     }
 };

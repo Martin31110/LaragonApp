@@ -34,14 +34,14 @@
         </div>
         
         <div class="">
-            <label for="categorias">Categorias</label>
-            {{-- <select name="categorias[]" id="categorias" multiple>
-                @foreach ($categoria as $categoria)
-                    <option value="{{ $categoria->id }}">
+            <label for="categorias">Sucursales</label>
+            <select name="categorias[]" id="categorias" multiple>
+                @foreach ($sucursales as $sucursal)
+                    <option value="{{ $sucursal->id }}">
                     
                     </option>
                 @endforeach
-            </select> --}}
+            </select>
         </div>
 
 
