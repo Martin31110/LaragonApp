@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Juguete;
-use App\Models\categorias;
+use App\Models\Sucursal;
 use Illuminate\Http\Request;
 
 class JugueteController extends Controller
@@ -25,15 +25,14 @@ class JugueteController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
-            $request->validate([
-            'NombreJ' => 'required|string',
-            'PrecioJ' => 'required|numeric',
-            'GeneroJ' => 'required|string',
-            'MaterialJ' => 'required|string',
-            'ProvedorJ' => 'required|string',
-            'categoroias' => 'required'
-        ]);
+        // $request->validate([
+        //     'NombreJ' => 'required|string',
+        //     'PrecioJ' => 'required|numeric',
+        //     'GeneroJ' => 'required|string',  
+        //     'MaterialJ' => 'required|string',
+        //     'ProvedorJ' => 'required|string',
+        //     'categoroias' => 'required'
+        // ]);
 
             //Crear el producto
             $juguete = new Juguete();
@@ -46,8 +45,7 @@ class JugueteController extends Controller
             
 
         //Asociar las   Sucursales sleccionadas al juguete
-
-            $juguete->categorias()->attach($request->sucursales);
+            $juguete->Sucursal()->attach($request->sucursales);
 
             Session()->flash('success', 'Se ha guardado con extio');
             return redirect('/juguete');
@@ -56,7 +54,6 @@ class JugueteController extends Controller
 
     public function show(Juguete $juguete)
     {
-        $juguete = Juguete::findOrFail($id);
         return view('/jugueteShow',compact('juguete'));
     }
 
@@ -67,7 +64,7 @@ class JugueteController extends Controller
     {
 
         $sucursales = Sucursal::all();
-        return view('jugueteEdit', compact('sucursales', 'juguete'))
+        return view('jugueteEdit', compact('sucursales', 'juguete'));
     }
 
     /**
@@ -75,19 +72,6 @@ class JugueteController extends Controller
      */
     public function update(Request $request, Juguete $juguete)
     {
-        Juguete::where('id', $juguete->id)->update($request->except('_token','_method', 'action'));
-        Session()->flash('success', 'Se ah modificado con exito');
-        return redirect('/juguete');
-
-            $request->validate([
-            'NombreJ' => 'required|string',
-            'PrecioJ' => 'required|numeric',
-            'GeneroJ' => 'required|string',
-            'MaterialJ' => 'required|string',
-            'ProvedorJ' => 'required|string',
-            'categoroias' => 'required'
-        ]);
-
         $juguete->NombreJ = $request->NombreJ;
         $juguete->PrecioJ = $request->PrecioJ;
         $juguete->GeneroJ = $request->GeneroJ;
@@ -96,11 +80,13 @@ class JugueteController extends Controller
         $juguete->save();
 
 
-        if ($request->has('categorias')) {
-            $juguete->categorias()->sync($request->categorias);
+        if ($request->has('sucursales')) {
+            $juguete->Sucursal()->sync($request->sucursales);
         } else {
-            $juguete->categorias()->detach(); 
+            $juguete->Sucursal()->detach(); 
         }
+
+        return redirect('/juguete');
     }
 
     /**

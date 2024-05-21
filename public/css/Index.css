@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+
+  .navbar {
+    width: 100%;
+    background-color: #70c489;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .radio-inputs {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  h1 {
+    margin-right: auto;
+    padding: 0.5rem 1rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .radio-inputs .radio {
+    margin-right: 1rem;
+  }
+
+  .radio-inputs .radio input {
+    display: none;
+  }
+
+  .radio-inputs .radio .name {
+    padding: 0.5rem 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+  }
+
+  .radio-inputs .radio input:checked + .name {
+    background-color: #ffffff;
+    color: #70c489;
+  }
+
+  .radio-inputs .radio input:checked + .name::after,
+  .radio-inputs .radio input:checked + .name::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    bottom: -5px;
+  }
+
+  .radio-inputs .radio input:checked + .name::after {
+    right: -15px;
+  }
+
+  .radio-inputs .radio input:checked + .name::before {
+    left: -15px;
+  }
+
+
+  .main-Index {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.main-Index h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.table-container {
+    margin-top: 50px; /* Ajustar según sea necesario */
+    padding: 20px;
+}
+
+.toy-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.toy-table th, .toy-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.toy-table th {
+    background-color: #70c489;
+    color: #fff;
+}
+
+.toy-table td {
+    text-align: center;
+}
+
+.details-link {
+    color: #70c489;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.details-link:hover {
+    color: #5aa57f;
+}
